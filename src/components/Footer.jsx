@@ -7,7 +7,8 @@ import {
   Twitter,
   Instagram,
 } from "lucide-react";
-import LogoIcon from  "../assets/Footer/logo.svg";
+import LogoIcon from "../assets/Footer/logo.svg";
+
 function Footer() {
   return (
     <footer className="relative">
@@ -23,15 +24,13 @@ function Footer() {
       />
 
       {/* Footer content */}
-
       <div className="relative z-10 flex flex-col items-center justify-center w-full px-[2%] py-[5%]">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-white">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 text-white">
           {/* Logo and Description */}
           <div className="space-y-4">
             <div>
               <img src={LogoIcon} alt="PCIG Logo" className="h-8 w-auto my-10" />
             </div>
-
             <p className="text-sm leading-relaxed">
               We are dedicated to helping you live a healthier, happier life.
               Our mission is to provide reliable, research-backed information,
@@ -40,11 +39,36 @@ function Footer() {
             </p>
           </div>
 
+          {/* Quick Links */}
+          <div>
+            <h3 className="text-xl font-semibold mb-6 text-black">Quick Links</h3>
+            <ul className="space-y-4 text-sm">
+              <li>
+                <a href="/" className="hover:underline">
+              Videos
+                </a>
+              </li>
+              <li>
+                <a href="/about" className="hover:underline">
+               Blogs
+                </a>
+              </li>
+              <li>
+                <a href="/services" className="hover:underline">
+              Podcasts
+                </a>
+              </li>
+              <li>
+                <a href="/blog" className="hover:underline">
+                Publications
+                </a>
+              </li>
+            </ul>
+          </div>
+
           {/* Contact Us */}
           <div>
-            <h3 className="text-xl font-semibold mb-6 text-black">
-              Contact Us
-            </h3>
+            <h3 className="text-xl font-semibold mb-6 text-black">Contact Us</h3>
             <div className="space-y-4">
               <div className="flex items-center gap-3">
                 <Phone className="w-5 h-5 flex-shrink-0" />
@@ -67,9 +91,7 @@ function Footer() {
 
           {/* Social Media */}
           <div>
-            <h3 className="text-xl font-semibold mb-6 text-black">
-              Social Media
-            </h3>
+            <h3 className="text-xl font-semibold mb-6 text-black">Social Media</h3>
             <div className="flex gap-4">
               <a
                 href="#"
@@ -95,6 +117,7 @@ function Footer() {
             </div>
           </div>
         </div>
+
         <p className="text-white text-center text-sm px-4 py-4">
           &copy; {new Date().getFullYear()} DrHamrickMd, a product of HMD
           Productions, LLC. All rights reserved. DrHamrickMD does not provide
