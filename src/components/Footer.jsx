@@ -8,8 +8,15 @@ import {
   Instagram,
 } from "lucide-react";
 import LogoIcon from "../assets/Footer/logo.svg";
+import { Link } from "react-router-dom";
 
 function Footer() {
+  const quickLinks = [
+    { name: "Blog", path: "/blog" },
+    { name: "Videos", path: "/videos" },
+    { name: "Podcasts", path: "/podcasts" },
+    { name: "Publications", path: "/publications" },
+  ];
   return (
     <footer className="relative">
       {/* Wavy gradient background */}
@@ -29,7 +36,11 @@ function Footer() {
           {/* Logo and Description */}
           <div className="space-y-4">
             <div>
-              <img src={LogoIcon} alt="PCIG Logo" className="h-8 w-auto my-10" />
+              <img
+                src={LogoIcon}
+                alt="PCIG Logo"
+                className="h-8 w-auto my-10"
+              />
             </div>
             <p className="text-sm leading-relaxed">
               We are dedicated to helping you live a healthier, happier life.
@@ -41,34 +52,28 @@ function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-xl font-semibold mb-6 text-black">Quick Links</h3>
-            <ul className="space-y-4 text-sm">
-              <li>
-                <a href="/" className="hover:underline">
-              Videos
-                </a>
-              </li>
-              <li>
-                <a href="/about" className="hover:underline">
-               Blogs
-                </a>
-              </li>
-              <li>
-                <a href="/services" className="hover:underline">
-              Podcasts
-                </a>
-              </li>
-              <li>
-                <a href="/blog" className="hover:underline">
-                Publications
-                </a>
-              </li>
-            </ul>
+            <h3 className="text-xl font-semibold mb-6 text-black">
+              Quick Links
+            </h3>
+            {quickLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.path}
+                className="flex items-center gap-2 text-sm  hover:text-black transition-colors"
+              >
+                <br />
+                <span>{link.name}</span>
+                <br />
+                <br />
+              </a>
+            ))}
           </div>
 
           {/* Contact Us */}
           <div>
-            <h3 className="text-xl font-semibold mb-6 text-black">Contact Us</h3>
+            <h3 className="text-xl font-semibold mb-6 text-black">
+              Contact Us
+            </h3>
             <div className="space-y-4">
               <div className="flex items-center gap-3">
                 <Phone className="w-5 h-5 flex-shrink-0" />
@@ -91,7 +96,9 @@ function Footer() {
 
           {/* Social Media */}
           <div>
-            <h3 className="text-xl font-semibold mb-6 text-black">Social Media</h3>
+            <h3 className="text-xl font-semibold mb-6 text-black">
+              Social Media
+            </h3>
             <div className="flex gap-4">
               <a
                 href="#"
