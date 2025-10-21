@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import Motivation from "../../components/Motivation";
 import videoData from "./components/videoData";
 import VideoCard from "./components/VideoCard";
-import HorizontalVideoCard from "../../components/HorizontalVideoCard"; // ✅ Your alternative card
+import HorizontalCard from "../../components/HorizontalCard"; // ✅ Your alternative card
 import { useState } from "react";
 import videoclick from "../../assets/videoclick.png";
 import Pagination from "../../components/Pagination";
@@ -20,7 +20,7 @@ function Videos() {
   const isRootVideosRoute = currentPath === "/videos";
 
   // Conditional Card Component
-  const CardComponent = fromMain ? HorizontalVideoCard : VideoCard;
+  const CardComponent = fromMain ? HorizontalCard : VideoCard;
 
   return (
     <div className="flex flex-col items-center py-12 sm:py-16 md:py-24 lg:py-32 min-h-[98vh] w-full relative">
