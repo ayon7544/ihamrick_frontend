@@ -1,0 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+@import "tailwindcss";
+/* Your custom styles */
+body {
+  font-family: "Poppins", sans-serif;
+}
+.filter-red {
+  filter: invert(29%) sepia(98%) saturate(6000%) hue-rotate(357deg)
+    brightness(95%) contrast(101%);
+}
+Hide scrollbar but allow scrolling .scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
