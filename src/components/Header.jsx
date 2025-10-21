@@ -38,13 +38,13 @@ function Header() {
   }, [location.pathname]);
 
   // ✅ Dynamically set header background
-  const headerBg =
-    location.pathname === "/" || location.pathname === "/home"
-      ? "bg-transparent"
-      : "bg-white shadow-md";
+const headerBg =
+  location.pathname === "/" || location.pathname === "/home"
+    ? "bg-transparent"
+    : "bg-white"; // no border, just white background
 
   return (
-    <header className={`fixed top-0 left-0 w-full z-[9999] px-4 py-6 transition-colors duration-300 ${headerBg}`}>
+<header className={`fixed top-0 left-0 w-full z-[9999] px-4 py-6 transition-colors duration-300 ${headerBg}`}>
       <div className="flex items-center justify-between w-full">
         {/* Logo */}
         <div className="w-24 h-8 flex-shrink-0">
