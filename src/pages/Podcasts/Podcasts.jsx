@@ -4,12 +4,25 @@ import Motivation from "../../components/Motivation";
 import { useState } from "react";
 import PodcastCard from "./components/PodcastCard";
 import podcastData from "./components/podcastData";
+import HorizontalCard from "../../components/HorizontalCard"; // ✅ Your alternative card
 import Pagination from "../../components/Pagination";
 
-const ITEMS_PER_PAGE = 6; // 2 rows x 3 columns
-function Podcasts() {
+
+function Podcasts() { 
+
+
+
   const [currentPage, setCurrentPage] = useState(1);
 
+
+  const location = useLocation();
+  const currentPath = location.pathname;
+  const fromMain = currentPath === "/" || currentPath === "/home";
+
+        // Set ITEMS_PER_PAGE based on fromMain
+  const ITEMS_PER_PAGE =15 
+  const isRootPodcastRoute = currentPath === "/podcasts";
+    const CardComponent = fromMain ? HorizontalCard : PodcastCard;
   const totalPages = Math.ceil(podcastData.length / ITEMS_PER_PAGE);
 
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
@@ -17,10 +30,6 @@ function Podcasts() {
     startIndex,
     startIndex + ITEMS_PER_PAGE
   );
-  const location = useLocation();
-  const currentPath = location.pathname;
-  const fromMain = currentPath === "/" || currentPath === "/home";
-  const isRootPodcastRoute = currentPath === "/podcasts";
 
   return (
     <div className="flex flex-col items-center py-12 sm:py-16 md:py-24 lg:py-32 min-h-[98vh] relative w-full ">
@@ -57,13 +66,14 @@ function Podcasts() {
       )} */}
       <div className="grid gap-8 sm:gap-10 md:gap-12 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 px-4 sm:px-6 md:px-10 w-full max-w-7xl">
         {currentItems.map((item) => (
-          <PodcastCard
+          <CardComponent
             key={item.id}
             id={item.id}
             imageUrl={item.imageUrl}
             title={item.title}
             description={item.description}
             podcastUrl={item.podcastUrl}
+            from="podcasts"
           />
         ))}
       </div>

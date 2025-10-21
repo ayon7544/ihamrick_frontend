@@ -4,23 +4,27 @@ import Motivation from "../../components/Motivation";
 import publicationData from "./components/publicationData";
 import PublicationCard from "./components/PublicationCard";
 import { useState } from "react"; // ✅ Import useState
-
+import HorizontalCard from "../../components/HorizontalCard"; // ✅ Your alternative card
 import Pagination from "../../components/Pagination";
 
-const ITEMS_PER_PAGE = 6; // 2 rows x 3 columns
 function Publications() {
+  const [currentPage, setCurrentPage] = useState(1);
+  // ✅ Set ITEMS_PER_PAGE based on fromMain
 
-    const [currentPage, setCurrentPage] = useState(1);
 
-  const totalPages = Math.ceil(publicationData.length / ITEMS_PER_PAGE);
-
-  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-  const currentItems = publicationData.slice(startIndex, startIndex + ITEMS_PER_PAGE);
   const location = useLocation();
   const currentPath = location.pathname;
   const fromMain = currentPath === "/" || currentPath === "/home";
   const isRootPublicationsRoute = currentPath === "/publications";
+  const ITEMS_PER_PAGE = 15
+  const CardComponent = fromMain ? HorizontalCard : PublicationCard;
+  const totalPages = Math.ceil(publicationData.length / ITEMS_PER_PAGE);
 
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const currentItems = publicationData.slice(
+    startIndex,
+    startIndex + ITEMS_PER_PAGE
+  );
   return (
     <div className="flex flex-col items-center py-12 sm:py-16 md:py-24 lg:py-32 min-h-[98vh] relative w-full">
       {isRootPublicationsRoute && <Motivation />}
@@ -57,7 +61,7 @@ function Publications() {
       )} */}
       <div className="grid gap-8 sm:gap-10 md:gap-12 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 px-4 sm:px-6 md:px-10 w-full max-w-7xl">
         {currentItems.map((item) => (
-          <PublicationCard
+          <CardComponent
             key={item.id}
             id={item.id}
             imageUrl={item.imageUrl}
@@ -66,11 +70,12 @@ function Publications() {
             publishedDate={item.publishedDate}
             description={item.description}
             pdfLink={item.pdfLink}
+            from="publications"
           />
         ))}
       </div>
-            {/* Pagination */}
-      {totalPages > 1&& isRootPublicationsRoute && (
+      {/* Pagination */}
+      {totalPages > 1 && isRootPublicationsRoute && (
         <Pagination
           currentPage={currentPage}
           totalPages={totalPages}

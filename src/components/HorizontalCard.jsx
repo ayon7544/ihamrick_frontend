@@ -7,11 +7,33 @@ export default function HorizontalCard({
   title,
   rightIcon,
   videoUrl,
+  from,
+  author,
+  publishedDate,
+  headline,
+  description,
+  pdfLink,
+  podcastUrl,
+  linkText,
+  blogContent,
 }) {
   return (
     <Link
-      to={`/videos/${id}`}
-      state={{ id, imageUrl, title, videoUrl }}
+      to={`/${from}/${id}`}
+      state={{
+        id,
+        imageUrl,
+        title,
+        videoUrl,
+        headline,
+        author,
+        publishedDate,
+        description,
+        pdfLink,
+        podcastUrl,
+        linkText,
+        blogContent,
+      }}
       className="flex items-center w-full max-w-md bg-black rounded-xl overflow-hidden shadow-md hover:scale-[1.02] transition-transform"
     >
       {/* Left Image */}
@@ -26,9 +48,8 @@ export default function HorizontalCard({
         }}
       />
 
-      {/* Middle Title */}
       <div className="flex-1 px-4 py-3 text-white font-semibold text-sm sm:text-base truncate">
-        {title}
+        {from === "publications" || from === "blogs" ? headline : title}
       </div>
 
       {/* Right Icon/Button */}

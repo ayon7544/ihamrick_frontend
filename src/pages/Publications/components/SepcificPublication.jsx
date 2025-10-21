@@ -30,12 +30,12 @@ const SpecificPublication = () => {
       <div className="max-w-xl w-full mx-auto p-4 md:p-8">
         {/* Header */}
         <header className="flex flex-col sm:flex-row items-center justify-between py-10 gap-3 mb-8">
-          <Link
-            to="/publications"
+          <button
+            onClick={() => window.history.back()} // goes back one step in browser history
             className="bg-black text-white rounded-2xl px-4 py-2 font-semibold text-sm shadow hover:bg-gray-900 transition"
           >
             ← Back
-          </Link>
+          </button>
           <h1 className="text-2xl sm:text-3xl font-bold text-center flex-1">
             {headline}
           </h1>
@@ -103,8 +103,6 @@ const SpecificPublication = () => {
             </p>
           )}
         </div>
-
-
       </div>
     </div>
   );

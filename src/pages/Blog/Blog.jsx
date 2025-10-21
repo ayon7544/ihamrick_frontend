@@ -2,24 +2,30 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import Motivation from "../../components/Motivation";
 import BlogCard from "./components/BlogCard";
+import HorizontalCard from "../../components/HorizontalCard"; // ✅ Your alternative card
 import blogData from "./components/blogData"; // ✅ Import data
 import { useState } from "react"; // ✅ Import useState
 
 import Pagination from "../../components/Pagination";
 
-const ITEMS_PER_PAGE = 6; // 2 rows x 3 columns
 function Blog() {
   const [currentPage, setCurrentPage] = useState(1);
 
+ 
+
+  const location = useLocation();
+  const currentPath = location.pathname;
+  const fromMain = currentPath === "/" || currentPath === "/home";
+   // Set ITEMS_PER_PAGE based on fromMain
+  const ITEMS_PER_PAGE = 15
+  const isRootBlogRoute = currentPath === "/blog";
+
+  // Conditional Card Component
+  const CardComponent = fromMain ? HorizontalCard : BlogCard;
   const totalPages = Math.ceil(blogData.length / ITEMS_PER_PAGE);
 
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
   const currentItems = blogData.slice(startIndex, startIndex + ITEMS_PER_PAGE);
-  const location = useLocation();
-  const currentPath = location.pathname;
-  const fromMain = currentPath === "/" || currentPath === "/home";
-  const isRootBlogRoute = currentPath === "/blog";
-
   return (
     <div className="flex flex-col items-center py-12 sm:py-16 md:py-24 lg:py-32 min-h-[98vh] relative w-full">
       {isRootBlogRoute && <Motivation />}
@@ -48,13 +54,14 @@ function Blog() {
       )} */}
       <div className="grid gap-8 sm:gap-10 md:gap-12 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 px-4 sm:px-6 md:px-10 w-full max-w-7xl">
         {currentItems.map((item) => (
-          <BlogCard
+          <CardComponent
             key={item.id}
             id={item.id}
             imageUrl={item.imageUrl}
             headline={item.headline}
             linkText={item.linkText}
             blogContent={item.blogContent}
+            from="blogs"
           />
         ))}
       </div>

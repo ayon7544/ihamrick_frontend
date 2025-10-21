@@ -71,12 +71,12 @@ const SpecificPodcast = () => {
       <div className="max-w-full sm:max-w-4xl md:max-w-6xl lg:max-w-7xl w-full mx-auto p-4 sm:p-6 md:p-8 font-sans leading-relaxed text-sm sm:text-base md:text-lg">
 
         <header className="flex flex-col sm:flex-row items-center justify-between gap-3 py-2 w-full">
-          <Link
-            to="/podcasts"
+            <button
+            onClick={() => window.history.back()} // goes back one step in browser history
             className="bg-black text-white rounded-2xl px-4 py-2 font-semibold text-sm shadow hover:bg-gray-900 transition"
           >
             ← Back
-          </Link>
+          </button>
           <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-center flex-1">
             {title}
           </h1>

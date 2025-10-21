@@ -8,19 +8,21 @@ import { useState } from "react";
 import videoclick from "../../assets/videoclick.png";
 import Pagination from "../../components/Pagination";
 
-const ITEMS_PER_PAGE = 18;
 function Videos() {
+
   const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = Math.ceil(videoData.length / ITEMS_PER_PAGE);
-  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-  const currentItems = videoData.slice(startIndex, startIndex + ITEMS_PER_PAGE);
   const location = useLocation();
   const currentPath = location.pathname;
   const fromMain = currentPath === "/" || currentPath === "/home";
+      // ✅ Set ITEMS_PER_PAGE based on fromMain
+  const ITEMS_PER_PAGE = 15;
   const isRootVideosRoute = currentPath === "/videos";
 
   // Conditional Card Component
   const CardComponent = fromMain ? HorizontalCard : VideoCard;
+  const totalPages = Math.ceil(videoData.length / ITEMS_PER_PAGE);
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const currentItems = videoData.slice(startIndex, startIndex + ITEMS_PER_PAGE);
 
   return (
     <div className="flex flex-col items-center py-12 sm:py-16 md:py-24 lg:py-32 min-h-[98vh] w-full relative">
@@ -61,6 +63,7 @@ function Videos() {
             rightIcon={videoclick}
             videoUrl={item.videoUrl}
             description={item.description}
+            from="videos"
           />
         ))}
       </div>
